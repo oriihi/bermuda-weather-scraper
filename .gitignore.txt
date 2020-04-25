@@ -1,0 +1,4 @@
+.DS_Store
+cron.log
+data.csv
+env
