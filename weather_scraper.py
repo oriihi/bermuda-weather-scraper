@@ -3,8 +3,7 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
-
-
+from datetime import datetime
 
 
 URL = 'http://weather.bm/'
@@ -62,11 +61,11 @@ print(windSpeed)
 
 humidity = job_elems[1].text[0:2]  
 tempC = job_elems[0].text[0:2]
-
-
+dateTimeObj = datetime.now()
+print(dateTimeObj)
 with open('data.csv', 'a', newline='') as file:  #the 'a' says to append where as a 'w' would write (from scratch)
     writer = csv.writer(file)
-    writer.writerow([tempC, humidity, windDirectionNum, windSpeed])
+    writer.writerow([dateTimeObj, tempC, humidity, windDirectionNum, windSpeed])
     print("writing")
 
 
