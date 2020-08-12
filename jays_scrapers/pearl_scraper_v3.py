@@ -105,6 +105,55 @@ print(recent_ws)
 #print(max_ws)
 #print(min_ws)
 
+#Setting the points for cropped image max wind speed
+left = 978
+top = 240
+right =1140
+bottom = 300
+
+# Cropped image of above dimension 
+# (It will not change orginal image) 
+im1 = im.crop((left, top, right, bottom)) 
+im1 = im1.save("crop_mwsp.png")
+cropmwsc = Image.open("crop_mwsp.png")
+#cropmwsc.show()
+
+#convert image type
+image_file = Image.open("crop_mwsp.png") # open colour image
+image_file = image_file.convert('L') # convert image to black and white
+image_file.save('bw_crop_mwsp.png')
+
+#invert image to B&W
+image = Image.open('bw_crop_mwsp.png')
+inverted_image = PIL.ImageOps.invert(image)
+inverted_image.save('bw_crop_inv_mwsp.png')
+#inverted_image.show() 
+#read image
+img = cv2.imread('bw_crop_inv_mwsp.png')
+text_mws = pytesseract.image_to_string(img)
+
+#print(text_mws)
+
+p = re.compile(r'\d+\.\d+')  # Compile a pattern to capture float values
+num_mws = [float(i) for i in p.findall(text_mws)]  # Convert strings to float
+#print(num_mws)
+
+#if len(num_ws)<3:
+    #print('this is an error')
+    #im.show()
+    #im.save('windv3 {}.png').format.now_time
+    #cropwsc.show()
+    #cropwsc.save("crop_wsp3 {}.png").format.now_time
+    #inverted_image.show()
+    #inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
+#slice for output
+recent_mws = num_mws[0]
+#max_ws = num_ws[1]
+#min_ws = num_ws[2]
+print(recent_mws)
+#print(max_ws)
+#print(min_ws)'''
+
 # Setting the points for cropped image wind direction 
 left = 980
 top = 430
@@ -153,7 +202,7 @@ print(recent_wd)
     # with closes file automatically on exiting block
 with open('jdatap3.csv', 'a', newline='') as file:  
     writer = csv.writer(file)
-    writer.writerow([now_time,recent_ws,recent_wd])
+    writer.writerow([now_time,recent_ws,recent_mws,recent_wd])
     #print ("finished_writing_pearl V3")
 
 
@@ -170,7 +219,7 @@ sheet = client.open("Bermuda_weather_data").sheet1
 
 #pprint (data)
 
-data_row_add = [now_time,recent_ws,recent_wd]
+data_row_add = [now_time,recent_ws,recent_mws,recent_wd]
 
 sheet.insert_row(data_row_add,4)
 
