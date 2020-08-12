@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup #for parsing website
 import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-#from pprint import pprint
+import hashlib #for creating md5 hash
 
 
 now_time = datetime.now() - timedelta(minutes = 0) # current date and time - 15 mins
@@ -223,4 +223,20 @@ data_row_add = [now_time,recent_ws,recent_mws,recent_wd]
 
 sheet.insert_row(data_row_add,4)
 
- 
+ # Creating url for windguru get API
+ # initializing string 
+str2hash = (("{}pearl_island_bermudapearlstation*").format(now_time))
+print(("{}pearl_island_bermudapearlstation*").format(now_time))
+# encoding Salt using encode() 
+# then sending to md5() 
+result = hashlib.md5(str2hash.encode()) 
+  
+# printing the equivalent hexadecimal value. 
+#print("The hexadecimal equivalent of hash is : ", end ="") 
+print(result.hexdigest())
+
+print(("windguru.cz/upload/api.php?uid=pearl_island_bermuda&salt={}&hash={}&wind_avg={}&wind_max={}&wind_direction={}").format(now_time,result.hexdigest(),recent_ws,recent_mws,recent_wd))
+
+#send windguru pearl data via get
+URL = ("http://www.windguru.cz/upload/api.php?uid=pearl_island_bermuda&salt={}&hash={}&wind_avg={}&wind_max={}&wind_direction={}").format(now_time,result.hexdigest(),recent_ws,recent_mws,recent_wd)
+page = requests.get(URL)
