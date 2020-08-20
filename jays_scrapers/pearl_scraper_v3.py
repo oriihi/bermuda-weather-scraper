@@ -98,7 +98,16 @@ num_ws = [float(i) for i in p.findall(text_ws)]  # Convert strings to float
     #inverted_image.show()
     #inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
 #slice for output
-recent_ws = num_ws[0]
+try:
+    recent_ws = num_ws[0]
+except:
+    print('this is an error')
+    im.show()
+    im.save('windv3 {}.png').format.now_time
+    cropwsc.show()
+    cropwsc.save("crop_wsp3 {}.png").format.now_time
+    inverted_image.show()
+    inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
 #max_ws = num_ws[1]
 #min_ws = num_ws[2]
 print(recent_ws)
@@ -207,7 +216,7 @@ with open('jdatap3.csv', 'a', newline='') as file:
 
 
 
-scope = ['https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+'''scope = ['https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
 creds = ServiceAccountCredentials.from_json_keyfile_name("/Users/jriihi/opt/anaconda3/lib/python3.7/Test_API/creds.json",scope)
 
@@ -239,4 +248,4 @@ print(("windguru.cz/upload/api.php?uid=pearl_island_bermuda&salt={}&hash={}&wind
 
 #send windguru pearl data via get
 URL = ("http://www.windguru.cz/upload/api.php?uid=pearl_island_bermuda&salt={}&hash={}&wind_avg={}&wind_max={}&wind_direction={}").format(now_time,result.hexdigest(),recent_ws,recent_mws,recent_wd)
-page = requests.get(URL)
+page = requests.get(URL)'''
