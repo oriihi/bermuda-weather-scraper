@@ -45,23 +45,13 @@ r = requests.get(url1)
 open(filename, 'wb').write(r.content)
 
 im = Image.open(filename, mode='r')
-
-""" print (type(im))
-for i in range (5):
-    if type(im) != 'PIL.PngImagePlugin.PngImageFile':
-        print("I'm looping")
-        time.sleep(5)
-        im = Image.open(filename, mode='r')
-        if type(im) !=  'PIL.PngImagePlugin.PngImageFile':
-            print ("No image found after 4 tries") """
-
 #im.show()
 
 # Setting the points for cropped image wind speed
 left = 978
-top = 40
+top = 60
 right =1140
-bottom = 145
+bottom = 98
 
 # Cropped image of above dimension 
 # (It will not change orginal image) 
@@ -87,32 +77,10 @@ text_ws = pytesseract.image_to_string(img)
 #print(text_ws)
 p = re.compile(r'\d+\.\d+')  # Compile a pattern to capture float values
 num_ws = [float(i) for i in p.findall(text_ws)]  # Convert strings to float
-#print(num_ws)
-
-#if len(num_ws)<3:
-    #print('this is an error')
-    #im.show()
-    #im.save('windv3 {}.png').format.now_time
-    #cropwsc.show()
-    #cropwsc.save("crop_wsp3 {}.png").format.now_time
-    #inverted_image.show()
-    #inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
-#slice for output
-try:
-    recent_ws = num_ws[0]
-except:
-    print('this is an error')
-    im.show()
-    im.save('windv3 {}.png').format.now_time
-    cropwsc.show()
-    cropwsc.save("crop_wsp3 {}.png").format.now_time
-    inverted_image.show()
-    inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
-#max_ws = num_ws[1]
-#min_ws = num_ws[2]
+recent_ws = num_ws [0]
 print(recent_ws)
-#print(max_ws)
-#print(min_ws)
+
+
 
 #Setting the points for cropped image max wind speed
 left = 978
@@ -147,21 +115,10 @@ p = re.compile(r'\d+\.\d+')  # Compile a pattern to capture float values
 num_mws = [float(i) for i in p.findall(text_mws)]  # Convert strings to float
 #print(num_mws)
 
-#if len(num_ws)<3:
-    #print('this is an error')
-    #im.show()
-    #im.save('windv3 {}.png').format.now_time
-    #cropwsc.show()
-    #cropwsc.save("crop_wsp3 {}.png").format.now_time
-    #inverted_image.show()
-    #inverted_image.save('bw_crop_inv_wsp3{}.png').format.now_time
-#slice for output
+
 recent_mws = num_mws[0]
-#max_ws = num_ws[1]
-#min_ws = num_ws[2]
+
 print(recent_mws)
-#print(max_ws)
-#print(min_ws)'''
 
 # Setting the points for cropped image wind direction 
 left = 980
@@ -200,11 +157,9 @@ num_wd = [float(i) for i in p.findall(text_wd)]  # Convert strings to float
 
 #slice for output
 recent_wd = num_wd[0]
-#max_wd = num_wd[1]
-#min_wd = num_wd[2]
+
 print(recent_wd)
-#print(max_wd)
-#print(min_wd)
+
     #the 'a' says to append where as a 'w' would write (from scratch)
     #for textLine in text:
     #f.write(textLine) # write data line to the open file 
@@ -212,7 +167,7 @@ print(recent_wd)
 with open('jdatap3.csv', 'a', newline='') as file:  
     writer = csv.writer(file)
     writer.writerow([now_time,recent_ws,recent_mws,recent_wd])
-    #print ("finished_writing_pearl V3")
+    #print ("finished_writing_pearl V3")'''
 
 
 
