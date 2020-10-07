@@ -171,7 +171,7 @@ with open('jdatap3.csv', 'a', newline='') as file:
 
 
 
-'''scope = ['https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+scope = ['https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
 creds = ServiceAccountCredentials.from_json_keyfile_name("/Users/jriihi/opt/anaconda3/lib/python3.7/Test_API/creds.json",scope)
 
@@ -182,8 +182,14 @@ sheet = client.open("Bermuda_weather_data").sheet1
 #data = sheet.get_all_records()
 
 #pprint (data)
+#creating lists to compare recent values with the current to stop upload when Pearl is broken
+values_list = sheet.row_values(4)
+print (values_list)
 
-data_row_add = [now_time,recent_ws,recent_mws,recent_wd]
+values_list2 = sheet.row_values(5)
+print (values_list2)
+
+'''data_row_add = [now_time,recent_ws,recent_mws,recent_wd]
 
 sheet.insert_row(data_row_add,4)
 

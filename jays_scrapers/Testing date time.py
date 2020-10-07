@@ -4,8 +4,8 @@ from datetime import datetime
 # datetime object containing current date and time
 now = datetime.now()
  
-print("now =", now)
+#print("now =", now)
 
 # dd/mm/YY H:M:S
-dt_string = now.strftime("%Y/%m/%d %H:%M")
-print("date and time =", dt_string)	
+now_time_gsheet = now.strftime("%Y/%m/%d %H:%M")
+print("date and time =", now_time_gsheet)	
