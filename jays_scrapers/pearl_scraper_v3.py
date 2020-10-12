@@ -183,11 +183,19 @@ sheet = client.open("Bermuda_weather_data").sheet1
 
 #pprint (data)
 #creating lists to compare recent values with the current to stop upload when Pearl is broken
-values_list = sheet.row_values(4)
+values_list = sheet.row_values(5)
 print (values_list)
 
-values_list2 = sheet.row_values(5)
+values_list2 = sheet.row_values(6)
 print (values_list2)
+
+#adding date format that GSheets can read with date/time value
+now = datetime.now()
+#print("now =", now)
+
+# dd/mm/YY H:M:S
+now_time_gsheet = now.strftime("%Y/%m/%d %H:%M")
+#print(now_time_gsheet)	
 
 '''data_row_add = [now_time,recent_ws,recent_mws,recent_wd]
 
