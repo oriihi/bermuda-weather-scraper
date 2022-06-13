@@ -1,0 +1,16 @@
+/Users/jriihi/opt/anaconda3/bin/python
+
+/Users/jriihi/Documents/bermuda-weather-scraper/optical_character_recognition_testing/pearl_scraper_v2.py
+
+#* * * * * cd Documents/projects/bermuda_weather_scraper && /Users/mollyriihiluoma/Documents/projects/bermuda_weather_scraper/env/bin/python weather_scraper.py >> cron.log 2>&1
+
+* * * * * cd Documents/bermuda-weather-scraper/optical_character_recognition_testing && /Users/jriihi/opt/anaconda3/bin/python pearl_scraper_v2.py >> cron.log 2>&1
+
+Script as of 24 August
+
+PATH=$PATH:/usr/local/bin
+  
+#* * * * * /users/jriihi/documents/bermuda-weather-scraper/jays_scrapers/pearl_scraper_v3.py >> cron.log 2>&1
+
+*/5 * * * * cd Documents/bermuda-weather-scraper/jays_scrapers && /Users/jriihi/opt/anaconda3/bin/python pearl_scraper_v3.py >> cron.log 2>&1
+
